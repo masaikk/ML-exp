@@ -150,7 +150,7 @@
 %----------------------------------------------------------------------------------------
 
 \HRule \\[1cm]
-{ \huge \bfseries The Experiment I Report of \textit{Machine Learning} }\\[0.6cm] % Title of your document
+{ \huge \bfseries The Experiment II Report of \textit{Machine Learning} }\\[0.6cm] % Title of your document
 \HRule \\[2cm]
 %----------------------------------------------------------------------------------------
 %	HEADING SECTIONS
@@ -212,30 +212,30 @@ Graduate
 
 
 % Define document title and author
-	\title{Face Detection Based on Neural Network}
+	\title{English-Chinese Translation Machine Based on Sequence to Sequence Network}
 	\author{Jianqiao Hu \thanks{autor's email: 202221045886@mail.scut.edu.cn}}
 	\maketitle
 
 % Write abstract here
 \begin{abstract}
-This report is about first experience in machine learning. We explained how to build a anaconda environment to launch python scripts. In second part, three deep learning models to face detection was been used. Consequently, statistics of this experience was been showed and in the final, we have attached some face detection results to reveal utility of models.
+This report is about first experience in machine learning. We explained how to build a anaconda environment to launch python scripts. In second part, three deep learning models to face detection was been used. Consequently, statistics of this experience was been showed and in the final, we have attached some face detection results.
 \end{abstract}
 
 % Each section begins with a \section{title} command
 \section{Introduction}
 	% \PARstart{}{} creates a tall first letter for this first paragraph
-\PARstart{F}{ace} detection is an important research hotspot in computer vision research field. Nowadays, it plays a significant role in auto-driving and smart home IoT system. Some methods like \cite{ZHAN201619} used convolutional neural network (CNN). This experience use method raised by \cite{8080244} to detection faces in photos.
+\PARstart{L}{anguages} are carriers of information transmission. Many kinds of languages are being using among whole world. One of research target in natural language processing field is how translate a language into another language accurately. With the inspiration from classic sequence-to-sequence machine translation models like \cite{1703.01619} and attention mechanism added machine learning language translation models like. \cite{1706.03762}.
 
 % Main Part
 \section{Methods and Theory}
-In \cite{8080244}, it propose Multi-task convolutional neural network to detect faces from images. Our experience used this method to handle photos in dataset. Whole Model includes three sub-models which are Proposal Network(P-Net), Refine Network(R-Net) and Output Network(O-Net). Each of these sub-models has its assignment respectively, in which generating bounding boxes for P-Net, removing no-face bounding boxes for R-Net while add landmark in photos for O-Net.
+In \cite{8080244}, it propose Multi-task convolutional neural network to detect faces from images. Our experience used this method.
 
 \section{Experiments}
 \subsection{Dataset}
-Test dataset includes more than ten thousand photos and all of them has at least one people facing to camera.
+In this experience, we used English-Chinese translation dataset to train the model.
 
 \subsection{Result}
-We used the parameters archive files provided by Github repository to test truly effect of these three models. Program scripts load images from test photos folder, annotated them by face in and converted annotated images into result folder. Whole test processing cost about 9 sec. by a laptop. Time costing result printscreens are Fig.\ref{fig:cost}.  We picked two of them to explain the effects of face detection, both of them have at least two person in it. First photo like Fig.\ref{fig:13869_raw} includes two persons, while one of them was back to the camera and another was frontal. So only face-to-camera one's face was been annotated by program like Fig.\ref{fig:13869}. Another photo that three person in was been annotated exactly with all the people like Fig.\ref{fig:13692}
+We used the parameters archive files provided by Github repository to test truly effect of these three models. Program scripts load images from test photos folder, annotated them by face in and conveted annotated images into result folder. Whole test processing cost about 9 sec. by a laptop. We picked two of them to explain the effects of face detection, both of them have at least two person in it. First photo like Fig.\ref{fig:13869_raw} includes two persons, while one of them was back to the camera and another was frontal. So only face-to-camera one's face was been annotated by program like Fig.\ref{fig:13869}. Another photo that three person in was been annotated exactly with all the people like Fig.\ref{fig:13692}
 
 	% You can reference tables and figure by using the \ref{label} command. Each table and figure needs to have a UNIQUE label.
 % 	Figures and tables should be labeled and numbered, such as in Table~\ref{tab:simParameters} and Fig.~\ref{fig:tf_plot} and \ref{fig:13869}.
@@ -280,67 +280,12 @@ We used the parameters archive files provided by Github repository to test truly
 % 		\end{center}
 % 	\end{figure}
 	
-		\begin{figure}
-		% Center the figure.
-		\begin{center}
-		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
-		\includegraphics[width=\columnwidth]{images/13869.jpg}
-		% Create a subtitle for the figure.
-		\caption{result with a person}
-		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
-		\label{fig:13869}
-		\end{center}
-	\end{figure}
+
 	
-	\begin{figure}
-		% Center the figure.
-		\begin{center}
-		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
-		\includegraphics[width=\columnwidth]{images/13692.jpg}
-		% Create a subtitle for the figure.
-		\caption{result with three person}
-		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
-		\label{fig:13692}
-		\end{center}
-	\end{figure}
-	
-	\begin{figure}
-		% Center the figure.
-		\begin{center}
-		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
-		\includegraphics[width=\columnwidth]{images/img_13692.jpg}
-		% Create a subtitle for the figure.
-		\caption{three person in a photo}
-		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
-		\label{fig:13692_raw}
-		\end{center}
-	\end{figure}
-	
-	\begin{figure}
-		% Center the figure.
-		\begin{center}
-		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
-		\includegraphics[width=\columnwidth]{images/img_13869.jpg}
-		% Create a subtitle for the figure.
-		\caption{two person in a photo}
-		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
-		\label{fig:13869_raw}
-		\end{center}
-	\end{figure}
-	\begin{figure}
-		% Center the figure.
-		\begin{center}
-		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
-		\includegraphics[width=\columnwidth]{images/cost.png}
-		% Create a subtitle for the figure.
-		\caption{cost time}
-		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
-		\label{fig:cost}
-		\end{center}
-	\end{figure}
+
 
 \section{Conclusion}
-	Multi-task convolutional neural network can play a crucial role in face detection. In this experience, we use three models to detect faces in photos. Due to lots parameter in models, it cost a long time to train all detection model in laptop. In training processing, we used late version pytorch to train models so python interpreter gave a warning in \textit{torch.nn}.
+	Multi-task convolutional neural network can play a crucial role in face detection. 
 
 \printbibliography
 
