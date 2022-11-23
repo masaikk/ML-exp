@@ -230,12 +230,26 @@ This report is about first experience in machine learning. We explained how to b
 \section{Methods and Theory}
 In \cite{8080244}, it propose Multi-task convolutional neural network to detect faces from images. Our experience used this method to handle photos in dataset. Whole Model includes three sub-models which are Proposal Network(P-Net), Refine Network(R-Net) and Output Network(O-Net). Each of these sub-models has its assignment respectively, in which generating bounding boxes for P-Net, removing no-face bounding boxes for R-Net while add landmark in photos for O-Net.
 
+The learning objective is formulated as a two-class classification problem. For each sample $x_{i}$, this method uses the cross-entropy loss as equation.\ref{loss1}, where $p_{i}$ is the probability produced by the network that indicates a sample being a face.
+
+
+
+\begin{equation}
+    L_{i}^{det}=-(y_{i}^{det}log(p_{i})+(1-y_{i}^{det})(1-log(p_{i})) )\label{loss1}
+\end{equation}
+
+For each candidate window, we  predict the offset between it and the nearest ground truth (i.e., the bounding boxes’ left top, height, and width). The learning objective is formulated as a regression problem, and this method employed the Euclidean loss for each sample $x_{i}$ as equation.\ref{eq2}.
+\begin{equation}
+    L_{i}^{box}=\Vert \hat{y}_{i}^{box}-y_{i}^{box} \Vert_2^{2} \label{eq2}
+\end{equation}
+
+
 \section{Experiments}
 \subsection{Dataset}
-Test dataset includes more than ten thousand photos and all of them has at least one people facing to camera.
+Training dataset includes more than ten thousand photos and all of them has at least one people facing to camera. Test dataset includes more than one thousand photos. In experience's testing procession, all images in test dataset were been marked by O-Net.
 
 \subsection{Result}
-We used the parameters archive files provided by Github repository to test truly effect of these three models. Program scripts load images from test photos folder, annotated them by face in and converted annotated images into result folder. Whole test processing cost about 9 sec. by a laptop. Time costing result printscreens are Fig.\ref{fig:cost}.  We picked two of them to explain the effects of face detection, both of them have at least two person in it. First photo like Fig.\ref{fig:13869_raw} includes two persons, while one of them was back to the camera and another was frontal. So only face-to-camera one's face was been annotated by program like Fig.\ref{fig:13869}. Another photo that three person in was been annotated exactly with all the people like Fig.\ref{fig:13692}
+We used the parameters archive files provided by Github repository to test truly effect of these three models. Program scripts load images from test photos folder, annotated them by face in and converted annotated images into result folder. Whole test processing cost about 9 sec. by a laptop with a GPU as NVIDIA GTX 950M. Time costing result revealing printscreens are Fig.\ref{fig:cost}.  We picked two of them to explain the effects of face detection, both of them have at least two person in it. First photo like Fig.\ref{fig:13869_raw} includes two persons, while one of them was back to the camera and another was frontal. So only face-to-camera one's face was been annotated by program like Fig.\ref{fig:13869}. Another photo that three person in was been annotated exactly with all the people like Fig.\ref{fig:13692}
 
 	% You can reference tables and figure by using the \ref{label} command. Each table and figure needs to have a UNIQUE label.
 % 	Figures and tables should be labeled and numbered, such as in Table~\ref{tab:simParameters} and Fig.~\ref{fig:tf_plot} and \ref{fig:13869}.

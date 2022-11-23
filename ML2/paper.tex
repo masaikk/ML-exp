@@ -218,24 +218,26 @@ Graduate
 
 % Write abstract here
 \begin{abstract}
-This report is about first experience in machine learning. We explained how to build a anaconda environment to launch python scripts. In second part, three deep learning models to face detection was been used. Consequently, statistics of this experience was been showed and in the final, we have attached some face detection results.
+This report is about second experience in machine learning. We explained how to build a anaconda environment to launch python scripts to train a model in machine translation. In second part, we have pre-processed raw training data and trained a Encoder-Decoder model to translate English into Chinese. Consequently, statistics of this experience was been attached.
 \end{abstract}
 
 % Each section begins with a \section{title} command
 \section{Introduction}
 	% \PARstart{}{} creates a tall first letter for this first paragraph
-\PARstart{L}{anguages} are carriers of information transmission. Many kinds of languages are being using among whole world. One of research target in natural language processing field is how translate a language into another language accurately. With the inspiration from classic sequence-to-sequence machine translation models like \cite{1703.01619} and attention mechanism added machine learning language translation models like. \cite{1706.03762}.
+\PARstart{L}{anguages} are carriers of information transmission. Many kinds of languages are being using among whole world. One of research target in natural language processing field is how translate a language into another language accurately. With the inspiration from classic sequence-to-sequence machine translation models like \cite{1703.01619} and attention mechanism added machine learning language translation models like \cite{10.5555/3295222.3295349}. The first time that Encoder-Decoder likes model used in machine translation was \cite{cho-etal-2014-learning}. In this method, Gated Recurrent Unit (GRU) was added into model to catch history information between tokens. Another model used Encoder-Decoder model to translate natural languages is \cite{10.5555/2969033.2969173} while it used Long Short Term Memory (LSTM) to learn implicit connection information from sequence.
 
 % Main Part
 \section{Methods and Theory}
-In \cite{8080244}, it propose Multi-task convolutional neural network to detect faces from images. Our experience used this method.
+
 
 \section{Experiments}
 \subsection{Dataset}
-In this experience, we used English-Chinese translation dataset to train the model.
+In this experience, we used English-Chinese translation dataset to train the model. In this case, this experience's model can convert English to Chinese and convert Chinese to English.
 
 \subsection{Result}
-We used the parameters archive files provided by Github repository to test truly effect of these three models. Program scripts load images from test photos folder, annotated them by face in and conveted annotated images into result folder. Whole test processing cost about 9 sec. by a laptop. We picked two of them to explain the effects of face detection, both of them have at least two person in it. First photo like Fig.\ref{fig:13869_raw} includes two persons, while one of them was back to the camera and another was frontal. So only face-to-camera one's face was been annotated by program like Fig.\ref{fig:13869}. Another photo that three person in was been annotated exactly with all the people like Fig.\ref{fig:13692}
+
+In training processing, the input sentence is passed to the encoder and each output and the final hidden state are recorded. The <SOS> token is fed as the first input to the decoder and the final hidden state of the encoder as its first hidden state.
+
 
 	% You can reference tables and figure by using the \ref{label} command. Each table and figure needs to have a UNIQUE label.
 % 	Figures and tables should be labeled and numbered, such as in Table~\ref{tab:simParameters} and Fig.~\ref{fig:tf_plot} and \ref{fig:13869}.
