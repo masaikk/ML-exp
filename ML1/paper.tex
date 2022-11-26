@@ -224,7 +224,7 @@ This report is about first experience in machine learning. We explained how to b
 % Each section begins with a \section{title} command
 \section{Introduction}
 	% \PARstart{}{} creates a tall first letter for this first paragraph
-\PARstart{F}{ace} detection is an important research hotspot in computer vision research field. Nowadays, it plays a significant role in auto-driving and smart home IoT system. Some methods like \cite{ZHAN201619} used convolutional neural network (CNN). This experience use method raised by \cite{8080244} to detection faces in photos.
+\PARstart{F}{ace} detection is an important research hotspot in computer vision research field. Nowadays, it plays a significant role in auto-driving and smart home IoT system. Some methods like \cite{ZHAN201619} and \cite{8080244} used convolutional neural network (CNN). This experience use method raised by \cite{7553523} to detection faces in photos.
 
 % Main Part
 \section{Methods and Theory}
@@ -243,10 +243,16 @@ For each candidate window, we  predict the offset between it and the nearest gro
     L_{i}^{box}=\Vert \hat{y}_{i}^{box}-y_{i}^{box} \Vert_2^{2} \label{eq2}
 \end{equation}
 
+This model's loss in labels can be implemented directly with a sample type indicator. While the overall learning target can be formulated as equation.\ref{target1}.
+
+\begin{equation}
+    min\sum_{i=1}^{N}\sum_{j \in \left det,box,landmark \right }\alpha_{j} \beta_{i}^{j} L_{i}^{j}\label{target1}
+\end{equation}
+
 
 \section{Experiments}
 \subsection{Dataset}
-Training dataset includes more than ten thousand photos and all of them has at least one people facing to camera. Test dataset includes more than one thousand photos. In experience's testing procession, all images in test dataset were been marked by O-Net.
+Training dataset includes more than ten thousand photos and all of them has at least one people facing to camera. Test dataset includes more than one thousand photos. In experience's testing procession, all images in test dataset were been marked by O-Net. Training process cost many time because this experience needs lots GPU processing power. In final, we uesd the parameter file provided with code to verify the model's responsibility in face detection.
 
 \subsection{Result}
 We used the parameters archive files provided by Github repository to test truly effect of these three models. Program scripts load images from test photos folder, annotated them by face in and converted annotated images into result folder. Whole test processing cost about 9 sec. by a laptop with a GPU as NVIDIA GTX 950M. Time costing result revealing printscreens are Fig.\ref{fig:cost}.  We picked two of them to explain the effects of face detection, both of them have at least two person in it. First photo like Fig.\ref{fig:13869_raw} includes two persons, while one of them was back to the camera and another was frontal. So only face-to-camera one's face was been annotated by program like Fig.\ref{fig:13869}. Another photo that three person in was been annotated exactly with all the people like Fig.\ref{fig:13692}
@@ -354,7 +360,7 @@ We used the parameters archive files provided by Github repository to test truly
 	\end{figure}
 
 \section{Conclusion}
-	Multi-task convolutional neural network can play a crucial role in face detection. In this experience, we use three models to detect faces in photos. Due to lots parameter in models, it cost a long time to train all detection model in laptop. In training processing, we used late version pytorch to train models so python interpreter gave a warning in \textit{torch.nn}.
+	Multi-task convolutional neural network can play a crucial role in face detection. In this experience, we use three models to detect faces in photos. Due to lots parameter in models, it cost a long time to train all detection model in laptop. In training processing, we used late version pytorch to train models so python interpreter gave a warning in \textit{torch.nn}. In this experience, we used a machine learning to handle a mission in face detection, it realized me that different networks in model has its responsibilities respectively, in which generating bounding boxes for P-Net, removing no-face bounding boxes for R-Net while add landmark in photos for O-Net.
 
 \printbibliography
 

@@ -228,6 +228,23 @@ This report is about second experience in machine learning. We explained how to 
 
 % Main Part
 \section{Methods and Theory}
+In this experience, its algorithm elaborates an encoder-decoder model with attention mechanism and conditional possibility in machine translation. In this algorithm, it defined a sentence like $ Y=[y_1,y_2,...,y_{t}] $. In this case, conditional probability distribution $ p(Y) $ in sequence Y is equation.\ref{probability} while T is the length of whole sentence and $ c  $ is the semantic vector calculated from each hidden state form a sentence in equation.\ref{sv}.
+
+\begin{equation}
+    p(Y)= \prod_{t=1}^{T} \label{probability}p(y_t|y_1,y_2,...,y_{t},c)
+\end{equation}
+
+\begin{equation}
+    c=q([h_1,h_2,...,h_T]) \label{sv}
+\end{equation}
+
+For attention mechanism this algorithm used contributes a hidden state in procession of machine learning for a neural cell to another like equation.\ref{hidden} while $ f(\cdot) $ is the function to calculate hidden state from $ x_t $ and $ h_{t-1} $.
+
+\begin{equation}
+    h_t=f(x_t,h_{t-1}) \label{hidden}
+\end{equation}
+
+
 
 
 \section{Experiments}
