@@ -175,7 +175,7 @@ Jianqiao Hu % Your name
 \begin{minipage}{0.4\textwidth}
 \begin{flushright} \large
 \emph{Supervisor:} \\
-Qian Tao % Supervisor's Name
+Qingyao Wu
 \end{flushright}
 \end{minipage}\\[2cm]
 ~
@@ -224,7 +224,7 @@ This report is about second experience in machine learning. We explained how to 
 % Each section begins with a \section{title} command
 \section{Introduction}
 	% \PARstart{}{} creates a tall first letter for this first paragraph
-\PARstart{L}{anguages} are carriers of information transmission. Many kinds of languages are being using among whole world. One of research target in natural language processing field is how translate a language into another language accurately. With the inspiration from classic sequence-to-sequence machine translation models like \cite{1703.01619} and attention mechanism added machine learning language translation models like \cite{10.5555/3295222.3295349}. The first time that Encoder-Decoder likes model used in machine translation was \cite{cho-etal-2014-learning}. In this method, Gated Recurrent Unit (GRU) was added into model to catch history information between tokens. Another model used Encoder-Decoder model to translate natural languages is \cite{10.5555/2969033.2969173} while it used Long Short Term Memory (LSTM) to learn implicit connection information from sequence.
+\PARstart{L}{anguages} are carriers of information transmission. Many kinds of languages are being using among whole world. One of research target in natural language processing field is how translate a language into another language accurately. With the inspiration from classic sequence-to-sequence machine translation models like \cite{1703.01619} and attention mechanism added machine learning language translation models like \cite{10.5555/3295222.3295349}. The first time that Encoder-Decoder likes model used in machine translation was \cite{cho-etal-2014-learning}. In this method, Gated Recurrent Unit (GRU) was added into model to catch history information between tokens. Another literature whose proposes model used Encoder-Decoder model to translate natural languages is \cite{10.5555/2969033.2969173} while it used Long Short Term Memory (LSTM) to learn implicit connection information from sequence.
 
 % Main Part
 \section{Methods and Theory}
@@ -249,62 +249,70 @@ For attention mechanism this algorithm used contributes a hidden state in proces
 
 \section{Experiments}
 \subsection{Dataset}
-In this experience, we used English-Chinese translation dataset to train the model. In this case, this experience's model can convert English to Chinese and convert Chinese to English.
+In this experience, we used English-Chinese translation dataset to train the model. In this case, this experience's model can convert English to Chinese and convert Chinese to English. Each pair of translation data is on the same format: English sentence is in the left, Chinese sentence is in the middle position, and other attribute information in the right.
 
 \subsection{Result}
 
-In training processing, the input sentence is passed to the encoder and each output and the final hidden state are recorded. The <SOS> token is fed as the first input to the decoder and the final hidden state of the encoder as its first hidden state.
+In training processing, the input sentence is passed to the encoder and each output and the final hidden state are recorded. The $ <SOS> $ (which means "start of sentence") token is fed as the first input to the decoder and the final hidden state of the encoder as its first hidden state.
+We use BLEU from \cite{papineni-etal-2002-bleu} to reveal the effect of this translation model.
 
+Because in this experience, we didn't split out test dataset and training dataset, in final, the BLEU score of this model is almost approach to 1, which illustrates that translation result is similar to the training dataset. BLEU score of experience result is Fig.\ref{fig:bleu}. In this image, models selected some sentence written by English from dataset randomly. It shows that sentence was been translated into Chinese exactly by model. For example, in Fig.\ref{fig:bleu}, a sentence is "she is sitting on the bench ." in English was translated into Chinese as truly meaning and $ <EOS> $ means "end of sentence".
 
-	% You can reference tables and figure by using the \ref{label} command. Each table and figure needs to have a UNIQUE label.
-% 	Figures and tables should be labeled and numbered, such as in Table~\ref{tab:simParameters} and Fig.~\ref{fig:tf_plot} and \ref{fig:13869}.
-
-	% This is how you define a table: the [!hbt] means that LaTeX is forced (by the !) to place the table exactly here (by h), or if that doesnt work because of a pagebreak or so, it tries to place the table to the bottom of the page (by b) or the top (by t).
-% 	\begin{table}[!hbt]
-% 		% Center the table
-% 		\begin{center}
-% 		% Title of the table
-% 		\caption{Simulation Parameters}
-% 		\label{tab:simParameters}
-% 		% Table itself: here we have two columns which are centered and have lines to the left, right and in the middle: |c|c|
-% 		\begin{tabular}{|c|c|}
-% 			% To create a horizontal line, type \hline
-% 			\hline
-% 			% To end a column type &
-% 			% For a linebreak type \\
-% 			Information message length & $k=16000$ bit \\
-% 			\hline
-% 			Radio segment size & $b=160$ bit \\
-% 			\hline
-% 			Rate of component codes & $R_{cc}=1/3$\\
-% 			\hline
-% 			Polynomial of component encoders & $[1 , 33/37 , 25/37]_8$\\
-% 			\hline
-% 		\end{tabular}
-% 		\end{center}
-% 	\end{table}
-
-	% If you have questions about how to write mathematical formulas in LaTeX, please read a LaTeX book or the 'Not So Short Introduction to LaTeX': tobi.oetiker.ch/lshort/lshort.pdf
-
-	% This is how you include a eps figure in your document. LaTeX only accepts EPS or TIFF files.
-% 	\begin{figure}[!hbt]
-% 		% Center the figure.
-% 		\begin{center}
-% 		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
-% 		\includegraphics[width=\columnwidth]{plot_tf}
-% 		% Create a subtitle for the figure.
-% 		\caption{Simulation results on the AWGN channel. Average throughput $k/n$ vs $E_s/N_0$.}
-% 		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
-% 		\label{fig:tf_plot}
-% 		\end{center}
-% 	\end{figure}
-	
-
-	
+Training loss in this experience was a little discrepancy in between difference of maximum number of tokens in a sentence. For example, we attach two pictures which reflect the change of loss value in two different maximum number of tokens in a sentence like Fig.\ref{fig:loss1} with maximum of 20 while Fig.\ref{fig:loss2} with maximum of 15 in this experience. 
 
 
 \section{Conclusion}
-	Multi-task convolutional neural network can play a crucial role in face detection. 
+	This experience addresses the question that whether attention mechanism could excavate deep information between tokens in sentence deeply. In this experience, we trains a model to translate English sentences into Chinese one. This model use encoder-decoder likes architecture to grab implication of English sentences from sentence vectors in hidden state.
+	
+	\begin{figure}
+		% Center the figure.
+		\begin{center}
+		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
+		\includegraphics[width=\columnwidth]{images/loss1.png}
+		% Create a subtitle for the figure.
+		\caption{loss in maximum number of 20}
+		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
+		\label{fig:loss1}
+		\end{center}
+	\end{figure}
+	
+		\begin{figure}
+		% Center the figure.
+		\begin{center}
+		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
+		\includegraphics[width=\columnwidth]{images/loss2.jpg}
+		% Create a subtitle for the figure.
+		\caption{loss in maximum number of 15}
+		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
+		\label{fig:loss2}
+		\end{center}
+	\end{figure}
+	
+		\begin{figure}
+		% Center the figure.
+		\begin{center}
+		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
+		\includegraphics[width=\columnwidth]{images/result-i am happy.jpg}
+		% Create a subtitle for the figure.
+		\caption{result of translate}
+		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
+		\label{fig:result1}
+		\end{center}
+	\end{figure}
+	
+	\begin{figure}
+		% Center the figure.
+		\begin{center}
+		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
+		\includegraphics[width=\columnwidth]{images/bleu.png}
+		% Create a subtitle for the figure.
+		\caption{BLEU score of test}
+		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
+		\label{fig:bleu}
+		\end{center}
+	\end{figure}
+	
+	
 
 \printbibliography
 
