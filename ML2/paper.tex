@@ -258,11 +258,29 @@ We use BLEU from \cite{papineni-etal-2002-bleu} to reveal the effect of this tra
 
 Because in this experience, we didn't split out test dataset and training dataset, in final, the BLEU score of this model is almost approach to 1, which illustrates that translation result is similar to the training dataset. BLEU score of experience result is Fig.\ref{fig:bleu}. In this image, models selected some sentence written by English from dataset randomly. It shows that sentence was been translated into Chinese exactly by model. For example, in Fig.\ref{fig:bleu}, a sentence is "she is sitting on the bench ." in English was translated into Chinese as truly meaning and $ <EOS> $ means "end of sentence".
 
-Training loss in this experience was a little discrepancy in between difference of maximum number of tokens in a sentence. For example, we attach two pictures which reflect the change of loss value in two different maximum number of tokens in a sentence like Fig.\ref{fig:loss1} with maximum of 20 while Fig.\ref{fig:loss2} with maximum of 15 in this experience. 
+Training loss in this experience was a little discrepancy in between difference of maximum number of tokens in a sentence. For example, we attach two pictures which reflect the change of loss value in two different maximum number of tokens in a sentence like Fig.\ref{fig:loss1} with maximum of 20 while Fig.\ref{fig:loss2} with maximum of 15 in this experience. This result shows that this model can fill all the sentences with max length of 15 and sentences with max length of 20.
+
+		\begin{figure}
+		% Center the figure.
+		\begin{center}
+		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
+		\includegraphics[width=\columnwidth]{images/result-i am happy.jpg}
+		% Create a subtitle for the figure.
+		\caption{result of translate}
+		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
+		\label{fig:result1}
+		\end{center}
+	\end{figure}
+
+In Fig.\ref{fig:result1}, we put a sentence with tokens as \textit{I am happy $ <EOS> $}. It shows these tokens relationship with some tokens in Chinese. Every tokens was been calculated an attention coefficient to other tokens. A lighter litter between two tokens means they have more tenacious relationship of themselves. In Fig.\ref{fig:result1}, it shows the relationship of all tokens in this sentence.
 
 
 \section{Conclusion}
 	This experience addresses the question that whether attention mechanism could excavate deep information between tokens in sentence deeply. In this experience, we trains a model to translate English sentences into Chinese one. This model use encoder-decoder likes architecture to grab implication of English sentences from sentence vectors in hidden state.
+
+ In this experience, we trained a model to translate sentence into another language. But in result of this experience, BLEU score of this model always be 1. We supposed this phenomenon signified this model just translated all the sentences from training dataset.
+
+ 
 	
 	\begin{figure}
 		% Center the figure.
@@ -288,17 +306,7 @@ Training loss in this experience was a little discrepancy in between difference 
 		\end{center}
 	\end{figure}
 	
-		\begin{figure}
-		% Center the figure.
-		\begin{center}
-		% Include the eps file, scale it such that it's width equals the column width. You can also put width=8cm for example...
-		\includegraphics[width=\columnwidth]{images/result-i am happy.jpg}
-		% Create a subtitle for the figure.
-		\caption{result of translate}
-		% Define the label of the figure. It's good to use 'fig:title', so you know that the label belongs to a figure.
-		\label{fig:result1}
-		\end{center}
-	\end{figure}
+
 	
 	\begin{figure}
 		% Center the figure.

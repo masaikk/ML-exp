@@ -246,7 +246,7 @@ For each candidate window, we  predict the offset between it and the nearest gro
 This model's loss in labels can be implemented directly with a sample type indicator. While the overall learning target can be formulated as equation.\ref{target1}.
 
 \begin{equation}
-    min\sum\limits_{i=1}^{N}\sum\limits_{j \in \left det,box,landmark \right }\alpha_{j} \beta_{i}^{j} L_{i}^{j}\label{target1}
+    min\sum_{i=1}^{N}\sum_{j \in  det,box,landmark  }\alpha_{j} \beta_{i}^{j} L_{i}^{j}\label{target1}
 \end{equation}
 
 
@@ -360,7 +360,9 @@ We used the parameters archive files provided by Github repository to test truly
 	\end{figure}
 
 \section{Conclusion}
-	Multi-task convolutional neural network can play a crucial role in face detection. In this experience, we use three models to detect faces in photos. Due to lots parameter in models, it cost a long time to train all detection model in laptop. In training processing, we used late version pytorch to train models so python interpreter gave a warning in \textit{torch.nn}. In this experience, we used a machine learning to handle a mission in face detection, it realized me that different networks in model has its responsibilities respectively, in which generating bounding boxes for P-Net, removing no-face bounding boxes for R-Net while add landmark in photos for O-Net.
+	Multi-task convolutional neural network can play a crucial role in face detection. In this experience, we use three models to detect faces in photos. Due to lots parameter in models, it cost a long time to train all detection model in laptop. 
+ 
+ In training processing, we used late version pytorch to train models so python interpreter gave a warning in \textit{torch.nn}. In this experience, we used a machine learning to handle a mission in face detection, it realized me that different networks in model has its responsibilities respectively, in which generating bounding boxes for P-Net, removing no-face bounding boxes for R-Net while add landmark in photos for O-Net.
 	
 	Training this model to handle face detecting cost many time in a laptop. And this experience's result needs tensorflow library to show the result of images of data. In the final, we conjectured that if P=Net and O-Net could be trained parallelly, it would save many time in training.
 
